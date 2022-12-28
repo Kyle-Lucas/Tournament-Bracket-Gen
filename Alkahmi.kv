@@ -1,0 +1,53 @@
+Main:
+
+<Main>:
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        pos_hint: { 'left': 0, 'top': 1 }
+        spacing: 10
+        padding: 10
+
+        Button:
+            id: left
+            text: "<"
+            size_hint: .1, 1
+            on_release: root.PreviousEdit(self)
+
+        Button:
+            id: right
+            text: ">"
+            size_hint: .1, 1
+            on_release: root.NextEdit(self)
+
+        Label:
+            text: 'Editing: ...'
+
+        TextInput:
+            id: txtinp
+            text: "Editing: ..."
+            multiline: False
+            on_text_validate: root.validate(self)
+        
+        Button:
+            text: 'RESET'
+            size_hint: .1, 1
+
+        Button: 
+            text: 'FINISH'
+            size_hint: .1, 1
+
+    BoxLayout:
+        size_hint: 1, .9
+        pos_hint: { 'left': 0, 'top': .9}
+        
+        Button:
+            id: P1
+            text: 'Player 1'
+
+        Button:
+            id: P2
+            text: 'Player 2'
+
+        
