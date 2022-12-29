@@ -3,7 +3,7 @@ from kivy.metrics import dp
 from kivy.properties import Clock
 from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Line, Rectangle, Ellipse
-from kivy.properties import StringProperty, BooleanProperty
+from kivy.properties import StringProperty, BooleanProperty, ListProperty
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.gridlayout import GridLayout
@@ -15,19 +15,24 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
-import Tournament_Logic
 
 Window.size = (1280, 720)    # (Width, Height)
 
 class Main(FloatLayout):
 
     # Editing is an Integer that will keep track of which info we want to change
-    Editing = 1
+    Editing = 0
+    EditList = ['Tournament Title', 'Player 1', 'Player 2']
 
     def NextEdit(self,widget):
 
-        self.Editing += 1
-        print(f' {self.Editing}')
+        if self.Editing < len(self.EditList) - 1:
+            
+            self.Editing += 1
+            print(f' {self.Editing}')
+
+            CurrentEdit = self.ids['edit']
+            CurrentEdit.text = self.EditList[self.Editing]
 
     def PreviousEdit(self,widget):
 
@@ -37,6 +42,9 @@ class Main(FloatLayout):
             self.Editing -= 1
             print(f' {self.Editing}')
 
+            CurrentEdit = self.ids['edit']
+            CurrentEdit.text = self.EditList[self.Editing]
+
     def validate(self,widget):
 
         # Editing = 0 >> Change Tournament Title
@@ -44,6 +52,7 @@ class Main(FloatLayout):
         # etc
         
         if self.Editing == 1:
+
             Player1 = self.ids['P1']
             Player1.text = widget.text
 
