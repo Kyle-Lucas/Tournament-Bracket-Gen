@@ -20,49 +20,42 @@ Window.size = (1280, 720)    # (Width, Height)
 
 class Main(FloatLayout):
 
-    # Editing is an Integer that will keep track of which info we want to change
+    # An Integer to keep track of what we're currently changing
     Editing = 0
-    EditList = ['Tournament Title', 'Player 1', 'Player 2']
 
-    def NextEdit(self,widget):
+    # A List of id's set in kv file that we can easily Access as Numbers with Variable Above
+    EditList = ['Tournament Title', 'P1', 'P2', 'P3', 'P4', 'P4', 'P5', 'P6', 'P7', 'P8']
 
-        if self.Editing < len(self.EditList) - 1:
-            
-            self.Editing += 1
-            print(f' {self.Editing}')
+    # Switch Between Fields we can Edit
+    def Switch_Edit(self,widget, Direction):
 
-            CurrentEdit = self.ids['edit']
-            CurrentEdit.text = self.EditList[self.Editing]
+        
+        CurrentEdit = self.ids['edit']
+        CurrentEdit.text = self.EditList[self.Editing]
 
-    def PreviousEdit(self,widget):
+        Type_Text = self.ids['txtinp']
+        Type_Text.text = self.EditList[self.Editing]
 
-        # We dont want to go below 0
-        if self.Editing > 0:
+        if Direction == 'right':
 
-            self.Editing -= 1
-            print(f' {self.Editing}')
+            if self.Editing < len(self.EditList) - 1:
+                
+                self.Editing += 1
+        
+        if Direction =='left':
 
-            CurrentEdit = self.ids['edit']
-            CurrentEdit.text = self.EditList[self.Editing]
+            if self.Editing > 0:
 
+                self.Editing -= 1
+
+        
     def validate(self,widget):
 
-        # Editing = 0 >> Change Tournament Title
-        # Editing = 1 >> Player 1
-        # etc
-        
-        if self.Editing == 1:
-
-            Player1 = self.ids['P1']
-            Player1.text = widget.text
+        # We set which ever id is currently active via EditList[Editing]
+        Set_As = self.ids[self.EditList[self.Editing]]
+        Set_As.text = widget.text
 
 
-"""
-    def on_text_validate(self, widget):
-
-        button = self.ids['bttn']
-        button.text = widget.text
-"""
 
 class Alkahmi(App):
     def build(self):
