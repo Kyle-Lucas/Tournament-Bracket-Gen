@@ -2,18 +2,27 @@ Main:
 
 <Main>:
 
+    # Background Image
     canvas.before:
         Rectangle:
             size: self.size
             pos: self.pos
             source: 'Alkahmi_BG.jpg'
 
+    # Main Control Panel at the top most part of the screen
     BoxLayout:
         orientation: 'horizontal'
         size_hint: 1, .15
         pos_hint: { 'left': 0, 'top': 1 }
         spacing: 10
         padding: 10
+        canvas:
+            Color:
+                rgba: .5, .5, 1, .4
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
 
         Button:
             id: left
@@ -41,27 +50,31 @@ Main:
         Button: 
             text: 'SHUFFLE'
             size_hint: .2, 1
+            on_release: root.Shuffle_Players(self)
 
-
+    # Tournament Title Block above Bracket Section
     Label:
         size_hint: 1, .1
         pos_hint: { 'left': 0, 'top': .85 }
         id: Tournament Title
         text: 'Tournament Title'
-        font_size: 40
+        font_size: 50
         font_name: 'Doctor Glitch.otf'
         canvas.before:
             Color:
-                rgba: 0, 0, .3, .7
+                rgba: .5, .5, 1, .5
             Rectangle:
                 size: self.size
                 pos: self.pos
 
+    # Bracket Section Divided into 4 BoxLayouts Within a GridLayout
     GridLayout:
         size_hint: 1, .75
         pos_hint: { 'left': 0, 'top': .75 }
         rows: 1
 
+
+        # First Block Divided into 4 vertical boxlayouts of 2 Players
         BoxLayout:
             orientation: 'vertical'
             padding: 20
@@ -74,10 +87,23 @@ Main:
                 Button:
                     id: Player 1
                     text: 'Player 1'
+                    color: 1,0,1,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '1')
+                    
 
                 Button:
                     id: Player 2
                     text: 'Player 2'
+                    color: 1,1,0,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '1')
 
             BoxLayout:
                 orientation: 'vertical'
@@ -86,10 +112,22 @@ Main:
                 Button:
                     id: Player 3
                     text: 'Player 3'
+                    color: 0,1,0,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '2')
 
                 Button:
                     id: Player 4
                     text: 'Player 4'
+                    color: 0,0,1,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '2')
 
             BoxLayout:
                 orientation: 'vertical'
@@ -98,10 +136,22 @@ Main:
                 Button:
                     id: Player 5
                     text: 'Player 5'
+                    color: 0,0,0,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '3')
 
                 Button:
                     id: Player 6
                     text: 'Player 6'
+                    color: 1,0,0,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '3')
 
             BoxLayout:
                 orientation: 'vertical'
@@ -110,40 +160,117 @@ Main:
                 Button:
                     id: Player 7
                     text: 'Player 7'
+                    color: 230/255, 153/255, 0 ,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '4')
 
                 Button:
                     id: Player 8
                     text: 'Player 8'
+                    color: 0,1,1,1
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    background_normal: ''
+                    background_color: 1,1,1,.2
+                    on_release: root.Advance_Player(self, '4')
 
+        # Second Block Divided into 2 vertical BoxLayouts of 2 Players
         BoxLayout:
 
             orientation: 'vertical'
             padding: 40
             spacing: 80
             
-            Button:
-                id: Winner 1
-                text: 'Winner 1'
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 80
+                Button:
+                    id: Winner 1
+                    text: 'Winner 1'
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .9,.9,1,.3
+                    on_release: root.Advance_Player(self, '5')
 
-            Button:
-                id: Winner 2
-                text: 'Winner 2'
+                Button:
+                    id: Winner 2
+                    text: 'Winner 2'
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .9,.9,1,.3
+                    on_release: root.Advance_Player(self, '5')
 
-            Button:
-                id: Winner 3
-                text: 'Winner 3'
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 80
+                Button:
+                    id: Winner 3
+                    text: 'Winner 3'
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .9,.9,1,.3
+                    on_release: root.Advance_Player(self, '6')
 
-            Button:
-                id: Winner 4
-                text: 'Winner 4'
+                Button:
+                    id: Winner 4
+                    text: 'Winner 4'
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .9,.9,1,.3
+                    on_release: root.Advance_Player(self, '6')
 
         BoxLayout:
+            orientation: 'vertical'
+            padding: 30
 
-            Button:
-                id: Block 3
-                text: 'Block 3'
+            BoxLayout:
+                Button:
+                    id: Finalist 1
+                    text: 'Finalist 1'
+                    size_hint: .8, .23
+                    pos_hint: { "center_y" : .57 }
+                    font_name: 'LEMONMILK-Bold.otf'
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .8,.8,1,.5
+                    on_release: root.Advance_Player(self, '7')
+            BoxLayout:
+                Button:
+                    id: Finalist 2
+                    text: 'Finalist 2'
+                    font_name: 'LEMONMILK-Bold.otf'
+                    size_hint: .8, .23
+                    pos_hint: { "center_y" : .45 }
+                    font_size: 18
+                    color: 1,1,1
+                    background_normal: ''
+                    background_color: .8,.8,1,.5
+                    on_release: root.Advance_Player(self, '7')
+
         BoxLayout:
-
+            padding: 25
             Button:
-                id: Block 4
-                text: 'Block 4'
+                id: Champion
+                text: ' C H A M P I O N ! '
+                font_size: 42
+                pos_hint: { "center_y" : .5 }
+                size_hint: 1, .15
+                font_name: 'LEMONMILK-Bold.otf'
+                font_size: 18
+                color: 1,1,1
+                background_normal: ''
+                background_color: 7,.7,1,.5
+                    
+
